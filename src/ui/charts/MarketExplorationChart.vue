@@ -7,7 +7,6 @@
 		CandlestickSeries,
 		HistogramSeries,
 		CandlestickData,
-		WhitespaceData,
 		HistogramData,
 		Time,
 	} from "lightweight-charts";
@@ -35,38 +34,26 @@
 	});
 
 	const processChartData = (raw: OhlcArray[]) => {
-		const intervalMs = 24 * 60 * 60 * 1000;
+		const total = raw.length;
+		const candles: CandlestickData[] = new Array(total);
+		const volumes: HistogramData[] = new Array(total);
 
-		// sort by timestamp first
-		const sorted = [...raw].sort((a, b) => a[0] - b[0]);
-
-		const candles: (CandlestickData | WhitespaceData)[] = [];
-		const volumes: (HistogramData | WhitespaceData)[] = [];
-
-		for (let i = 0; i < sorted.length; i++) {
-			// unpack
-			const [ms, open, high, low, close, volume] = sorted[i];
+		for (let i = 0; i < total; i++) {
+			const [ms, open, high, low, close, volume] = raw[i];
 			const timeInSeconds = (ms / 1000) as Time;
 
-			if (i > 0) {
-				const prevMs = sorted[i - 1][0];
-				let missingMs = prevMs + intervalMs;
+			candles[i] = {
+				time: timeInSeconds,
+				open,
+				high,
+				low,
+				close,
+			};
 
-				while (missingMs < ms) {
-					const gapTime = (missingMs / 1000) as Time;
-
-					// insert whitespace
-					const whitespace = { time: gapTime };
-					candles.push(whitespace);
-					volumes.push(whitespace);
-
-					missingMs += intervalMs;
-				}
-			}
-
-			// actual datapoints
-			candles.push({ time: timeInSeconds, open, high, low, close });
-			volumes.push({ time: timeInSeconds, value: volume });
+			volumes[i] = {
+				time: timeInSeconds,
+				value: volume,
+			};
 		}
 
 		return { candles, volumes };
