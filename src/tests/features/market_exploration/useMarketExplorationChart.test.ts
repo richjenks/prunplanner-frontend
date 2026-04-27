@@ -50,7 +50,7 @@ describe("useMarketExplorationChart", async () => {
 
 		expect(dataChart.value.length).toBe(778);
 		expect(hasError.value).toBeFalsy();
-		expect(dataCandlestick.value.length).toBe(778);
+		expect(dataCandlestick.value.length).toBe(952);
 
 		expect(dataCandlestick.value[0].length).toBe(6);
 	});

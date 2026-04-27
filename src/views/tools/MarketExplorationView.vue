@@ -39,11 +39,19 @@
 
 	// Util
 	import { formatAmount, formatNumber } from "@/util/numbers";
+	import { CandleInterval } from "@/features/market_exploration/marketExploration.types";
 
 	const exchangeOptions: Ref<PSelectOption[]> = ref(
 		["AI1", "CI1", "IC1", "NC1"].map((e) => {
 			return { label: e, value: e };
 		})
+	);
+
+	const intervalOptions: Ref<PSelectOption[]> = ref(
+		["Daily", "Weekly", "Monthly"].map((e) => ({
+			label: e,
+			value: e.toLowerCase(),
+		}))
 	);
 
 	const materialOptions = ref<PSelectOption[]>([]);
@@ -52,10 +60,8 @@
 	const selectedMaterial: Ref<string> = ref("DW");
 	const selectedChartFullscreen: Ref<boolean> = ref(false);
 
-	const { fetchData, dataCandlestick } = useMarketExplorationChart(
-		selectedExchange,
-		selectedMaterial
-	);
+	const { fetchData, dataCandlestick, selectedInterval } =
+		useMarketExplorationChart(selectedExchange, selectedMaterial);
 
 	function fetch(): void {
 		trackEvent("marketexploration_explore", {
@@ -370,32 +376,63 @@
 								<h3 class="font-bold text-lg grow">
 									Market Chart
 								</h3>
-								<div class="flex flex-row gap-3">
-									<template
-										v-for="option in exchangeOptions"
-										:key="option.value">
-										<PButton
-											:type="
-												option.value == selectedExchange
-													? 'primary'
-													: 'secondary'
-											"
-											@click="
-												() => {
-													if (
-														option.value &&
-														typeof option.value ===
-															'string'
-													) {
-														selectedExchange =
-															option.value;
-														fetch();
+								<div class="flex flex-row">
+									<div class="flex flex-row gap-1 pr-3">
+										<template
+											v-for="option in exchangeOptions"
+											:key="option.value">
+											<PButton
+												:type="
+													option.value ==
+													selectedExchange
+														? 'primary'
+														: 'secondary'
+												"
+												@click="
+													() => {
+														if (
+															option.value &&
+															typeof option.value ===
+																'string'
+														) {
+															selectedExchange =
+																option.value;
+															fetch();
+														}
 													}
-												}
-											">
-											{{ option.label }}
-										</PButton>
-									</template>
+												">
+												{{ option.label }}
+											</PButton>
+										</template>
+									</div>
+									<div class="flex flex-row gap-1 pr-1">
+										<template
+											v-for="option in intervalOptions"
+											:key="option.value">
+											<PButton
+												:type="
+													option.value ==
+													selectedInterval
+														? 'primary'
+														: 'secondary'
+												"
+												@click="
+													() => {
+														if (
+															option.value &&
+															typeof option.value ===
+																'string'
+														) {
+															selectedInterval =
+																option.value as CandleInterval;
+															fetch();
+														}
+													}
+												">
+												{{ option.label }}
+											</PButton>
+										</template>
+									</div>
 									<PButton @click="switchChartFullscreen">
 										<template #icon>
 											<OpenInFullSharp
