@@ -107,7 +107,7 @@
 				ticks: { color: "#999999", font: { size: 11 } },
 			},
 			y: {
-				beginAtZero: true,
+				beginAtZero: false,
 				grid: { color: "rgba(255, 255, 255, 0.05)" },
 				ticks: {
 					color: "#999999",
