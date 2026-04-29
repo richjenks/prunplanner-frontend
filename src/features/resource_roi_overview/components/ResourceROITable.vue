@@ -166,7 +166,7 @@
 				</template>
 			</XNDataTableColumn>
 		</XNDataTableColumn>
-		<XNDataTableColumn key="profit" title="Profit">
+		<XNDataTableColumn key="profit" title="Cost / Profit">
 			<XNDataTableColumn key="cogm" title="COGM">
 				<template #render-cell="{ rowData }">
 					<COGMButton :cogm-data="rowData.cogm" />
@@ -180,13 +180,13 @@
 					<div class="text-end">Plan Cost</div>
 				</template>
 				<template #render-cell="{ rowData }">
-					<div class="text-end">
+					<div class="text-end text-nowrap">
 						{{ formatNumber(rowData.planCost) }}
 						<span class="pl-1 font-light text-white/50"> ȼ </span>
 					</div>
 				</template>
 			</XNDataTableColumn>
-			<XNDataTableColumn
+			<!-- <XNDataTableColumn
 				key="outputProfit"
 				title="Output Profit"
 				sorter="default">
@@ -195,7 +195,7 @@
 				</template>
 				<template #render-cell="{ rowData }">
 					<div
-						class="text-end"
+						class="text-end text-nowrap"
 						:class="
 							rowData.outputProfit > 0
 								? 'text-positive'
@@ -205,7 +205,7 @@
 						<span class="pl-1 font-light text-white/50"> ȼ </span>
 					</div>
 				</template>
-			</XNDataTableColumn>
+			</XNDataTableColumn> -->
 			<XNDataTableColumn
 				key="dailyProfit"
 				title="Daily Profit"
@@ -215,7 +215,7 @@
 				</template>
 				<template #render-cell="{ rowData }">
 					<div
-						class="text-end"
+						class="text-end text-nowrap"
 						:class="
 							rowData.dailyProfit > 0
 								? 'text-positive'
@@ -226,7 +226,7 @@
 					</div>
 				</template>
 			</XNDataTableColumn>
-			<XNDataTableColumn
+			<!-- <XNDataTableColumn
 				key="planProfitArea"
 				title="Profit/Area"
 				sorter="default">
@@ -235,7 +235,7 @@
 				</template>
 				<template #render-cell="{ rowData }">
 					<div
-						class="text-end"
+						class="text-end text-nowrap"
 						:class="
 							rowData.planProfitArea > 0
 								? 'text-positive'
@@ -245,10 +245,10 @@
 						<span class="pl-1 font-light text-white/50"> ȼ </span>
 					</div>
 				</template>
-			</XNDataTableColumn>
+			</XNDataTableColumn> -->
 			<XNDataTableColumn key="planROI" title="Plan ROI" sorter="default">
 				<template #title>
-					<div class="text-end">Plan ROI</div>
+					<div class="text-end text-nowrap">Plan ROI</div>
 				</template>
 				<template #render-cell="{ rowData }">
 					<div
