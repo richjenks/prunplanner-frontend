@@ -1,3 +1,12 @@
+# 2026-04-29 - v. 0.28.0
+
+- Implements the "API Keys" view to manage PRUNplanner API keys from the UI [[PR-408]](https://github.com/PRUNplanner/frontend/pull/408)
+- Changes the plans production building layout to be more condensed [[PR-409]](https://github.com/PRUNplanner/frontend/pull/409), [[PR-414]](https://github.com/PRUNplanner/frontend/pull/414)
+- Calculate CX distances in Resource ROI view [[PR-410]](https://github.com/PRUNplanner/frontend/pull/411)
+- Adds Day, Week, Month options to Market Exploration OHLC chart [[PR-415]](https://github.com/PRUNplanner/frontend/pull/415)
+- Fixes the issue where construction cart would show false-positive FIO warnings [[PR-413]](https://github.com/PRUNplanner/frontend/pull/413)
+- Removes output profit and profit / area from Resource ROI [[PR-416]](https://github.com/PRUNplanner/frontend/pull/416)
+
 # 2026-04-19 - v. 0.27.0
 
 - Show Production Opportunities on Empire View for materials with positive Delta [[PR-400]](https://github.com/PRUNplanner/frontend/pull/400), [[PR-402]](https://github.com/PRUNplanner/frontend/pull/402)
