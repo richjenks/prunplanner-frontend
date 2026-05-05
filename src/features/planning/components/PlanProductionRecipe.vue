@@ -270,7 +270,7 @@
 									? 'text-positive!'
 									: 'text-negative!'
 							">
-							{{ formatNumber(rowData.roi) }} d
+							{{ rowData.roi < 0 ? "—" : formatNumber(rowData.roi) + " d" }}
 						</span>
 					</template>
 				</XNDataTableColumn>
