@@ -105,6 +105,13 @@
 	);
 
 	const cogmWithCX = computed(() => !!props.cxUuid);
+
+	function roiSorter(
+		row1: Record<string, unknown>,
+		row2: Record<string, unknown>
+	): number {
+		return (row1.dailyRevenue as number) - (row2.dailyRevenue as number);
+	}
 </script>
 
 <template>
@@ -255,7 +262,7 @@
 						</span>
 					</template>
 				</XNDataTableColumn>
-				<XNDataTableColumn key="roi" title="ROI" sorter="default">
+				<XNDataTableColumn key="roi" title="ROI" :sorter="roiSorter">
 					<template #render-cell="{ rowData }">
 						<span
 							:class="
